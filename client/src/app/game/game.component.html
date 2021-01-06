@@ -1,0 +1,28 @@
+<div style="text-align: center; margin-top:2vh">
+    <button class="btn btn-outline-success" *ngIf="!showGuessResults && !gameEnded" id="guessButton" [disabled]="!guessButtonEnabled" (click)="makeGuess()">Make a Guess</button>
+    <button class="btn btn-primary" *ngIf="showGuessResults && !gameEnded" (click)="getNextLocation()">Next</button>
+    <button class="btn btn-dark" id="endGameButton" style="margin-left:1vw" *ngIf="!gameEnded" (click)="endGame()" >End Game</button>
+    <!-- <button *ngIf="gameEnded" style="float:right; margin-right:1.1vw" (click)="restartGame()">Play Again</button> -->
+    <a class="btn btn-outline-primary" *ngIf="gameEnded" (click)="restartGame()" routerLink="/play" routerLinkActive="active">Play Again</a>
+    <!-- <button class="btn btn-secondary" *ngIf="gameEnded" style="float:right; margin-right:1.1vw" (click)="goHome()">Back to Home</button> -->
+    <a class="btn btn-secondary" style="margin-left:1vw" *ngIf="gameEnded" routerLink="/" routerLinkActive="active" >Back to Home</a>
+</div>
+<div style="margin-top:2vh;" *ngIf="!showGuessResults && !gameEnded">
+    <app-panorama *ngIf="location" [location]="location" (validPanoLocation)="getRandomLocation()"></app-panorama>
+    <app-map (mapClicked)="enableGuessButton()" (guessLocation)="storePlayerCurrGuess($event)"></app-map>
+</div>
+
+<app-guess-result *ngIf="showGuessResults && !gameEnded" [location]="location" [guessLocation]="guessLocation" (distanceAway)="addToDistances($event)"></app-guess-result>
+
+<div *ngIf="gameEnded" id="gameResults" style="margin-left:25vw; margin-top:2vh">
+    <h1>Your Game Results</h1>
+    <ul>
+        <li>Rounds Played: {{roundsPlayed}}</li>
+        <li>Average Guess Distance Away: {{avgDistanceAway}} km</li>
+        <li>Closest Guess Distance: {{closestDistance}} km</li>
+        <li>Farthest Guess Distance: {{farthestDistance}} km</li>
+    </ul>
+</div>
+      
+   
+

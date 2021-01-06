@@ -1,0 +1,18 @@
+<app-login-button *ngIf="(auth.isAuthenticated$ | async) === false">
+</app-login-button>
+
+<!-- <app-logout-button *ngIf="auth.isAuthenticated$ | async">
+</app-logout-button> -->
+<div style="float:right;" class="dropdown">
+    <a  href="#" id="imageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img style="margin-right:0.5vw;margin-top:0.5vw; height:50px; width:50px" *ngIf="auth.user$ | async as user"
+            [src]="user.picture"
+            alt="User's profile picture"
+            class="rounded-circle img-fluid profile-picture"
+        />
+    </a>
+    <div class="dropdown-menu" style="margin-top:25px" aria-labelledby="imageDropdown">
+        <a class="dropdown-item" routerLink="/profile">View Profile</a>
+        <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Log Out</a>
+      </div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "name": "geo-guesser",
+  "version": "1.0.0",
+  "description": "geography guessing game",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon ./server.js localhost 3080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeffrey Weng",
+  "license": "ISC",
+  "dependencies": {
+    "auth0": "^2.31.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
